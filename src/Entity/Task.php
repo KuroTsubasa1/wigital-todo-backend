@@ -14,9 +14,6 @@ class Task
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $TaskID = null;
-
-    #[ORM\Column]
     private ?int $UserID = null;
 
     #[ORM\Column(length: 255)]
@@ -28,18 +25,6 @@ class Task
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTaskID(): ?int
-    {
-        return $this->TaskID;
-    }
-
-    public function setTaskID(int $TaskID): static
-    {
-        $this->TaskID = $TaskID;
-
-        return $this;
     }
 
     public function getUserID(): ?int
