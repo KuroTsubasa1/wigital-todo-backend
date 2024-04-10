@@ -20,7 +20,8 @@ class TaskController extends AbstractController
     public function getAll(EntityManagerInterface $entityManager): JsonResponse
     {
         $tasks = $entityManager->getRepository(Task::class)->findAll();
-// Assuming you have set up serialization groups or manually format your response
+
+        // Assuming you have set up serialization groups or manually format your response
         return $this->json(['tasks' => $tasks]);
     }
 
@@ -28,7 +29,8 @@ class TaskController extends AbstractController
     public function getOne(int $taskId, EntityManagerInterface $entityManager): JsonResponse
     {
         $task = $entityManager->getRepository(Task::class)->find($taskId);
-// Handle null task scenario appropriately
+
+        // Handle null task scenario appropriately
         return $this->json(['task' => $task]);
     }
 
@@ -37,7 +39,12 @@ class TaskController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         $task = new Task();
-// Populate the task entity from $data
+
+        // Populate the task entity from $data
+        $task->setUserID($data['UserID']);
+        $task->setDescription($data['Description']);
+        $task->setStatus($data['Status']);
+
         $entityManager->persist($task);
         $entityManager->flush();
         return $this->json(['task' => $task], Response::HTTP_CREATED);
@@ -51,7 +58,12 @@ class TaskController extends AbstractController
             return $this->json(['message' => 'Task not found'], Response::HTTP_NOT_FOUND);
         }
         $data = json_decode($request->getContent(), true);
-// Update the task entity from $data
+
+        // Update the task entity from $data
+        $task->setUserID($data['UserID']);
+        $task->setDescription($data['Description']);
+        $task->setStatus($data['Status']);
+
         $entityManager->flush();
         return $this->json(['task' => $task]);
     }
