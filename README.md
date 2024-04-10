@@ -73,7 +73,7 @@ The `TaskController` has the following methods:
 
 ## Running the Application
 
-To run the application, you need to have PHP and Composer installed on your machine. You can then install the application dependencies by running `composer install` in the project directory. After the dependencies are installed, you can start the application by running `ddev start`.
+To run the application, you need to have PHP and Composer installed on your machine. You can then install the application dependencies by running `composer install` in the project directory. After the dependencies are installed, you can start the application by running `ddev start`. After that use `ddev ssh` to access the container and run `php bin/console doctrine:database:create` & `php bin/console doctrine:migrations:migrate` to create the database schema. You can now access the application at the provided URL.
 
 ## License
 
